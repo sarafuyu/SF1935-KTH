@@ -1,2 +1,2 @@
 # SF1935-KTH
-Assignments finished in KTH's course Probability theory and statistics with applications in machine learning 2023.
+Assignments finished in KTH's course Probability Theory and Statistics with Applications in Machine Learning 2023.
