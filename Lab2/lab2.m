@@ -125,7 +125,6 @@
 % hold off
 
 %% Problem 5 - Test av normalitet
-
 % Ladda upp datan till MATLAB från 'birth.dat'
 filename = 'birth.dat';
 fileID = fopen(filename, 'rt');
