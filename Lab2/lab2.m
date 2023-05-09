@@ -74,29 +74,84 @@
 % plot(lower_bound, 0, 'g*')
 % plot(upper_bound, 0, 'g*')
 
-%% Problem 3: Konfidensintervall (forts.)
+% %% Problem 3: Konfidensintervall (forts.)
 % plot(0:0.1:6, raylpdf(0:0.1:6, my_est), 'r')
 % hold off
 
 %% Problem 4: Fordelningar av givna data
+% load birth.dat
+% x = birth(birth(:, 20) < 3, 3);
+% y = birth(birth(:, 20) == 3, 3);
+% 
+% %% Använd length för att se storleken på vektorerna x och y
+% x_length = length(x) % det här ger längden på vektorn x
+% y_length = length(y) % det här ger längden på vektorn y
+% whos x y; %% för att se detaljer om vektorerna x och y
+% 
+% %% Problem 4: Fordelningar av givna data (forts.)
+% subplot(2,2,1), boxplot(x),
+% axis([0 2 500 5000])
+% subplot(2,2,2), boxplot(y),
+% axis([0 2 500 5000])
+% 
+% %% Problem 4: Fordelningar av givna data (forts.)
+% subplot(2,2,3:4), ksdensity(x),
+% hold on
+% [fy, ty] = ksdensity(y);
+% plot(ty, fy, 'r')
+% hold off
+
+%% Problem 4: Fordelningar av givna data för alkoholkonsumtion
+% load birth.dat
+% x = birth(birth(:, 26) < 2, 3);
+% y = birth(birth(:, 26) == 2, 3);
+% 
+% %% Använd length för att se storleken på vektorerna x och y
+% x_length = length(x) % det här ger längden på vektorn x
+% y_length = length(y) % det här ger längden på vektorn y
+% whos x y; %% för att se detaljer om vektorerna x och y
+% 
+% %% Problem 4: Fordelningar av givna data (forts.)
+% subplot(2,2,1), boxplot(x),
+% axis([0 2 500 5000])
+% subplot(2,2,2), boxplot(y),
+% axis([0 2 500 5000])
+% 
+% %% Problem 4: Fordelningar av givna data (forts.)
+% subplot(2,2,3:4), ksdensity(x),
+% hold on
+% [fy, ty] = ksdensity(y);
+% plot(ty, fy, 'r')
+% hold off
+
+%% Problem 5 - Test av normalitet
+
+
 load birth.dat
 x = birth(birth(:, 20) < 3, 3);
 y = birth(birth(:, 20) == 3, 3);
 
-%% Problem 4: Fordelningar av givna data (forts.)
+% Använd length för att se storleken på vektorerna x och y
+x_length = length(x) % det här ger längden på vektorn x
+y_length = length(y) % det här ger längden på vektorn y
+whos x y; %% för att se detaljer om vektorerna x och y
+
+% Problem 4: Fordelningar av givna data (forts.)
 subplot(2,2,1), boxplot(x),
 axis([0 2 500 5000])
 subplot(2,2,2), boxplot(y),
 axis([0 2 500 5000])
 
-%% Problem 4: Fordelningar av givna data (forts.)
+% Problem 4: Fordelningar av givna data (forts.)
 subplot(2,2,3:4), ksdensity(x),
 hold on
 [fy, ty] = ksdensity(y);
 plot(ty, fy, 'r')
 hold off
 
+
+
 %% Problem 6: Regression
-res = w-X*beta_hat;
-subplot(2,1,1), normplot(res)
-subplot(2,1,2), hist(res)
+% res = w-X*beta_hat;
+% subplot(2,1,1), normplot(res)
+% subplot(2,1,2), hist(res)

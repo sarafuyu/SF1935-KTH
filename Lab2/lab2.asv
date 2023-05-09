@@ -71,8 +71,8 @@
 
 %% Problem 3: Konfidensintervall (forts.)
 % hold on % Gor sa att ploten halls kvar
-% plot(lower_bound, 0, 'g*')
-% plot(upper_bound, 0, 'g*')
+plot(lower_bound, 0, 'g*')
+plot(upper_bound, 0, 'g*')
 
 %% Problem 3: Konfidensintervall (forts.)
 % plot(0:0.1:6, raylpdf(0:0.1:6, my_est), 'r')
