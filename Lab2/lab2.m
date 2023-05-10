@@ -101,7 +101,7 @@
 % plot(ty, fy, 'r')
 % hold off
 
-%% Problem 4: Fordelningar av givna data för alkoholkonsumtion
+%% Problem 4: Fördelningar av givna data för alkoholkonsumtion
 % load birth.dat
 % x = birth(birth(:, 26) < 2, 3);
 % y = birth(birth(:, 26) == 2, 3);
@@ -125,61 +125,101 @@
 % hold off
 
 %% Problem 5 - Test av normalitet
-% Ladda upp datan till MATLAB från 'birth.dat'
-filename = 'birth.dat';
-fileID = fopen(filename, 'rt');
-rawData = fread(fileID, '*char')';
-fclose(fileID);
-% Replace consecutive delimiters with a single space
-cleanData = regexprep(rawData, ' +', ' ');
-% Read specific columns from the cleaned data
-formatSpec = '%*f %*f %*f %f %f %*f %*f %*f %*f %*f %*f %*f %*f %*f %*f %f %f %*[^\n]';
-dataArray = textscan(cleanData, formatSpec, ...
-'Delimiter', ' ', ...
-'CollectOutput', true);
-data = cell2mat(dataArray);
-% Extrahera de relevanta kolumnerna för de fyra variablerna
-fodelsevikt = data(:,1);
-mors_alder = data(:,2);
-mors_vikt = data(:,3);
-mors_langd = data(:,4);
-% Använder `jbtest` för att utföra Jarque-Bera-testet på varje kolumn och lagrar resultaten.
-alpha = 0.05;
-[h1, p1] = jbtest(fodelsevikt);
-[h2, p2] = jbtest(mors_alder);
-[h3, p3] = jbtest(mors_vikt);
-[h4, p4] = jbtest(mors_langd);
-% Skriver ut resultatet för de fyra variablerna och kontrollera om de är normalfördelade vid signifikansnivån 5%.
-% Barnets vikt
-fprintf('Barnets födelsevikt: ');
-if p1 < alpha
-    fprintf('Inte normalfördelad (p-värde: %f)\n', p1);
-else
-    fprintf('Normalfördelad (p-värde: %f)\n', p1);
-end
-% Moderns ålder
-fprintf('Moderns ålder: ');
-if p2 < alpha
-    fprintf('Inte normalfördelad (p-värde: %f)\n', p2);
-else
-    fprintf('Normalfördelad (p-värde: %f)\n', p2);
-end
-% Moderns vikt
-fprintf('Moderns vikt: ');
-if p3 < alpha
-    fprintf('Inte normalfördelad (p-värde: %f)\n', p3);
-else
-    fprintf('Normalfördelad (p-värde: %f)\n', p3);
-end
-% Moderns längd
-fprintf('Moderns längd: ');
-if p4 < alpha
-    fprintf('Inte normalfördelad (p-värde: %f)\n', p4);
-else
-    fprintf('Normalfördelad (p-värde: %f)\n', p4);
-end
+% % Ladda upp datan till MATLAB från 'birth.dat'
+% fileID = fopen('birth.dat', 'rt');
+% rawData = fread(fileID, '*char')';
+% fclose(fileID);
+% % Replace consecutive delimiters with a single space
+% cleanData = regexprep(rawData, ' +', ' ');
+% % Read specific columns from the cleaned data
+% formatSpec = '%*f %*f %*f %f %f %*f %*f %*f %*f %*f %*f %*f %*f %*f %*f %f %f %*[^\n]';
+% dataArray = textscan(cleanData, formatSpec, ...
+% 'Delimiter', ' ', ...
+% 'CollectOutput', true);
+% data = cell2mat(dataArray);
+% 
+% % Extrahera de relevanta kolumnerna för de fyra variablerna
+% fodelsevikt = data(:,1);
+% mors_alder = data(:,2);
+% mors_vikt = data(:,3);
+% mors_langd = data(:,4);
+% % Använder `jbtest` för att utföra Jarque-Bera-testet på varje kolumn och lagrar resultaten.
+% [h1, p1] = jbtest(fodelsevikt);
+% [h2, p2] = jbtest(mors_alder);
+% [h3, p3] = jbtest(mors_vikt);
+% [h4, p4] = jbtest(mors_langd);
+% 
+% % Skriver ut resultatet för de fyra variablerna och kontrollera om de är normalfördelade vid signifikansnivån 5%.
+% alpha = 0.05;
+% 
+% % Barnets vikt
+% fprintf('Barnets födelsevikt: ');
+% if p1 < alpha
+%     fprintf('Inte normalfördelad (p-värde: %f)\n', p1);
+% else
+%     fprintf('Normalfördelad (p-värde: %f)\n', p1);
+% end
+% 
+% % Moderns ålder
+% fprintf('Moderns ålder: ');
+% if p2 < alpha
+%     fprintf('Inte normalfördelad (p-värde: %f)\n', p2);
+% else
+%     fprintf('Normalfördelad (p-värde: %f)\n', p2);
+% end
+% 
+% % Moderns vikt
+% fprintf('Moderns vikt: ');
+% if p3 < alpha
+%     fprintf('Inte normalfördelad (p-värde: %f)\n', p3);
+% else
+%     fprintf('Normalfördelad (p-värde: %f)\n', p3);
+% end
+% 
+% % Moderns längd
+% fprintf('Moderns längd: ');
+% if p4 < alpha
+%     fprintf('Inte normalfördelad (p-värde: %f)\n', p4);
+% else
+%     fprintf('Normalfördelad (p-värde: %f)\n', p4);
+% end
 
 %% Problem 6: Regression
-% res = w-X*beta_hat;
-% subplot(2,1,1), normplot(res)
-% subplot(2,1,2), hist(res)
+% % Läs in data från filen
+% data = load('moore.dat');
+% % Tilldela x och y från data
+% x = data(:, 1);
+% y = data(:, 2);
+% % Ta logaritmen av y för att få w
+% w = log(y);
+% % Skapa matrisen X
+% X = [ones(size(x)), x];
+% % Använd regress-funktionen för att hitta skattning av beta
+% [beta_hat,~,~,~,stats] = regress(w, X);
+% R_square1 = stats(1)
+% R_square2 = stats(2)
+% R_square3 = stats(3)
+% R_square4 = stats(4)
+% % Bestäm vilken fördelning residualerna kommer från
+% res = w - X * beta_hat;
+% subplot(2, 1, 1);
+% normplot(res);
+% title('Normal Probability Plot of Residuals');
+% subplot(2, 1, 2);
+% hist(res);
+% title('Histogram of Residuals');
+% % Återgå till originalskala för y (y_hat)
+% y_hat = exp(X * beta_hat);
+% % Plotta den skattade modellen
+% figure;
+% plot(x, y, 'o', x, y_hat, '-');
+% title('Scatter plot of data and fitted model');
+% xlabel('Year');
+% ylabel('# of Transistors');
+% % Beräkna prediktionen för år 2025
+% year_pred = 2025;
+% log_y_pred = [1, year_pred] * beta_hat;
+% y_pred = exp(log_y_pred);
+% fprintf('The predicted number of transistors in 2025 is: %.2f\n', y_pred);
+
+%% Multipel linjär regression
