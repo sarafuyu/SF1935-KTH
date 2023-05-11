@@ -22,14 +22,11 @@ alpha = 0.05; % 95% konfidensintervall
 n = length(birth_weight);
 p = size(X_multiple, 2);
 [~, int, r, ~, ~] = regress(birth_weight, X_multiple, alpha);
-
-for i=1:4
-    fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int(1,1), int(1,2));
-end
+confidence_intervals = int;
 
 % Residualer
-% residuals = birth_weight - X_multiple * multiple_model;
+residuals = birth_weight - X_multiple * multiple_model;
 
 % Normplot för residualerna
-normplot(r);
+normplot(residuals);
 title('Normplot för residualerna från multipel linjär regression');

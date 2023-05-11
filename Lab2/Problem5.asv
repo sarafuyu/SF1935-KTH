@@ -1,17 +1,28 @@
 %% Problem 5 - Test av normalitet
-    % Läs in datafilen
-    data = readmatrix('birth.dat');
-    % Hämta variablerna
-    fodelsevikt = data(:, 3);
-    mors_alder = data(:, 4);
-    mors_vikt = data(:, 15);
-    mors_langd = data(:, 16);
+    % Ladda upp datan till MATLAB från 'birth.dat'
+    fileID = fopen('birth.dat', 'rt');
+    rawData = fread(fileID, '*char')';
+    fclose(fileID);
+    % Replace consecutive delimiters with a single space
+    cleanData = regexprep(rawData, ' +', ' ');
+    % Read specific columns from the cleaned data
+    formatSpec = '%*f %*f %*f %f %f %*f %*f %*f %*f %*f %*f %*f %*f %*f %*f %f %f %*[^\n]';
+    dataArray = textscan(cleanData, formatSpec, ...
+    'Delimiter', ' ', ...
+    'CollectOutput', true);
+    data = cell2mat(dataArray);
 
-%% Normplot av datan
-    subplot(2,2,1), normplot(fodelsevikt), title('Födelsevikt') % nära, men ej norm fördelad
-    subplot(2,2,2), normplot(mors_alder), title('Moderns ålder') % nära, men ej norm fördelad
-    subplot(2,2,3), normplot(mors_vikt), title('Moderns vikt') % ej norm fördelad
-    subplot(2,2,4), normplot(mors_langd), title('Moderns längd') % är norm fördelad
+%% Extrahera de relevanta kolumnerna för de fyra variablerna
+    fodelsevikt = data(:,1);
+    mors_alder = data(:,2);
+    mors_vikt = data(:,3);
+    mors_langd = data(:,4);
+
+%% Normplot eller qqplot
+    %normplot(fodelsevikt) % nära, men ej norm fördelad
+    % normplot(mors_alder) % nära, men ej norm fördelad
+    % normplot(mors_vikt) % ej norm fördelad
+    normplot(mors_langd) % är norm fördelad
 
 %% Använder `jbtest` för att utföra Jarque-Bera-testet på varje kolumn och lagrar resultaten.
     [h1, p1] = jbtest(fodelsevikt);

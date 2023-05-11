@@ -32,10 +32,10 @@ log_y_pred = [1, year_pred] * beta_hat;
 y_pred = exp(log_y_pred);
 fprintf('The predicted number of transistors in 2025 is: %.2f\n', y_pred);
 
-% Återgå till originalskala för y (y_hat)
-y_hat = exp(X * beta_hat);
 % Plotta den skattade modellen
 figure;
+% Återgå till originalskala för y (y_hat)
+y_hat = exp(X * beta_hat);
 plot(x, y, 'o', x, y_hat, '-');
 title('Scatter plot of data and fitted model');
 xlabel('Year');
