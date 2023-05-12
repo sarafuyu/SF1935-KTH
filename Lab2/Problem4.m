@@ -1,7 +1,7 @@
 %% Problem 4: Fordelningar av givna data
     load birth.dat
-    % x = birth(birth(:, 20) < 3, 3);
-    % y = birth(birth(:, 20) == 3, 3);
+    x = birth(birth(:, 20) < 3, 3);
+    y = birth(birth(:, 20) == 3, 3);
     % Uppgift men med alkohol som undersöks
     % x = birth(birth(:, 26) < 2, 3);
     % y = birth(birth(:, 26) == 2, 3);

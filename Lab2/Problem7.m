@@ -1,4 +1,4 @@
-    %% Multipel linjär regression
+%% Multipel linjär regression
 % Läs in datafilen
 data = readmatrix('birth.dat');
 
@@ -11,7 +11,6 @@ drinking = data(:, 26);
 alcohol = data(:, 26);
 
 for k=1:size(alcohol)
-    
     if(alcohol(k) == 2)
         alcohol(k) == 1
     else
@@ -33,26 +32,15 @@ multiple_model = X_multiple \ birth_weight;
 % Konfidensintervall för den multipel regressionsmodellen
 alpha = 0.05; % 95% konfidensintervall
 n = length(birth_weight);
-% Test 1
-p = size(X_multiple, 2);
-[~, int, r, ~, ~] = regress(birth_weight, X_multiple, alpha);
-
-% Test 2
 p = size(X_multiple_modify, 2);
 [beta_hat, int_modify, res, ~, ~] = regress(birth_weight, X_multiple_modify, alpha);
 
-% Test 1
-for i=1:4
-    fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int(1,1), int(1,2));
-end
+fprintf('konfidensintervall: från %.2f till %.2f\n', int_modify(1,1), int_modify(1,2));
+fprintf('konfidensintervall: från %.2f till %.2f\n', int_modify(2,1), int_modify(2,2));
+fprintf('konfidensintervall: från %.2f till %.2f\n', int_modify(3,1), int_modify(3,2));
+fprintf('konfidensintervall: från %.2f till %.2f\n', int_modify(4,1), int_modify(4,2));
 
-%Test 2
-for i=1:4
-     fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int_modify(1,1), int_modify(1,2));
-end
-
-% Residualer
-% residuals = birth_weight - X_multiple * multiple_model;
+beta_hat
 
 % Normplot för residualerna
 normplot(r);

@@ -1,4 +1,4 @@
-    %% Multipel linjär regression
+%% Multipel linjär regression
 % Läs in datafilen
 data = readmatrix('birth.dat');
 
@@ -11,7 +11,6 @@ drinking = data(:, 26);
 alcohol = data(:, 26);
 
 for k=1:size(alcohol)
-    
     if(alcohol(k) == 2)
         alcohol(k) == 1
     else
@@ -41,13 +40,12 @@ p = size(X_multiple, 2);
 p = size(X_multiple_modify, 2);
 [beta_hat, int_modify, res, ~, ~] = regress(birth_weight, X_multiple_modify, alpha);
 
-% Test 1
+%Test 2
 for i=1:4
-    fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int(1,1), int(1,2));
+     fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int_modify(1,1), int_modify(1,2));
 end
 
-%Test
-
+beta_hat
 % Residualer
 % residuals = birth_weight - X_multiple * multiple_model;
 
