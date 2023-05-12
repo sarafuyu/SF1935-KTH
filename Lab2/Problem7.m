@@ -18,8 +18,6 @@ for k=1:size(alcohol)
     end
 end
 
-categorical_var = mothers_weight; % Modifiera detta för att extrahera kategoriseringen från Problem 4
-
 % Enkel linjär regression: Födelsevikt beroende av moderns längd
 X_simple = [ones(size(mothers_height)), mothers_height];
 simple_model = X_simple \ birth_weight;
