@@ -12,7 +12,7 @@ w = log(y);
 X = [ones(size(x)), x];
 
 % Använd regress-funktionen för att hitta skattning av beta
-[beta_hat,~,~,~,stats] = regress(w, X);
+[beta_hat,~,r,~,stats] = regress(w, X);
 % Bestäm storheten R^2
 R_square1 = stats(1)
 R_square2 = stats(2)
@@ -20,7 +20,7 @@ R_square3 = stats(3)
 R_square4 = stats(4)
 
 % Bestäm vilken fördelning residualerna kommer från
-res = w - X * beta_hat;
+res = w - X * beta_hat; % Använd r istället 
 subplot(2, 1, 1), normplot(res);
 title('Normal Probability Plot of Residuals');
 subplot(2, 1, 2), hist(res);

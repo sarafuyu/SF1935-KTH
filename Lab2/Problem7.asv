@@ -46,10 +46,7 @@ for i=1:4
     fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int(1,1), int(1,2));
 end
 
-%Test 2
-for i=1:4
-     fprintf('konfidensintervall %.d: från %.2f till %.2f\n', i, int_modify(1,1), int_modify(1,2));
-end
+%Test
 
 % Residualer
 % residuals = birth_weight - X_multiple * multiple_model;
