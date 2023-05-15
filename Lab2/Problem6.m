@@ -18,6 +18,7 @@ R_square1 = stats(1)
 % R_square2 = stats(2)
 % R_square3 = stats(3)
 % R_square4 = stats(4)
+beta_hat
 
 % Bestäm vilken fördelning residualerna kommer från
 res = w - X * beta_hat; % Använd r istället 

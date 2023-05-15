@@ -12,9 +12,9 @@ alcohol = data(:, 26);
 
 for k=1:size(alcohol)
     if(alcohol(k) == 2)
-        alcohol(k) == 1
+        alcohol(k) == 1;
     else
-        alcohol(k) == 0
+        alcohol(k) == 0;
     end
 end
 
